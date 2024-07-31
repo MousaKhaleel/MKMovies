@@ -54,17 +54,17 @@ namespace MKMovies.Services
                 return movies;
             }
         }
-        public async Task<Movie> GetMovieByName(string name)
+        public async Task<Movie> GetMovieByName(string Title)
         {
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://imdb8.p.rapidapi.com/title/find?q={Uri.EscapeDataString(name)}"),
+                RequestUri = new Uri($"https://imdb8.p.rapidapi.com/v2/search?searchTerm={Uri.EscapeDataString(Title)}&type=NAME&first=5&country=US&language=en-US"),
                 Headers =
-                {
-                    { "x-rapidapi-key", "a66b09b652msh14a735e7d8e6439p1fa476jsnf09f715f8d65" },
-                    { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                },
+    {
+        { "x-rapidapi-key", "a66b09b652msh14a735e7d8e6439p1fa476jsnf09f715f8d65" },
+        { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
+    },
             };
 
             using (var response = await _httpClient.SendAsync(request))
@@ -73,53 +73,63 @@ namespace MKMovies.Services
                 var body = await response.Content.ReadAsStringAsync();
 
                 var json = JObject.Parse(body);
-                var movieNode = json["results"]?.FirstOrDefault();
-                if (movieNode != null)
+                var movieNodes = json["data"]["mainSearch"]["edges"];
+                foreach (var item in movieNodes)
                 {
-                    var movie = new Movie
+                    var movieNode = item["node"]["entity"];
+                    if (movieNode != null)
                     {
-                        Id = movieNode["id"].ToString(),
-                        Title = movieNode["title"]?["text"]?.ToString(),
-                        Plot = movieNode["plot"]?["plainText"]?.ToString(),
-                        ImageUrl = movieNode["primaryImage"]?["url"]?.ToString(),
-                        Rating = movieNode["ratingsSummary"]?["aggregateRating"]?.ToString()
-                    };
-                    return movie;
+                        {
+                            var movie = new Movie
+                            {
+                                Id = movieNode["id"]?.ToString(),
+                                Title = movieNode["nameText"]?["text"]?.ToString(),
+                                //Plot = movieNode["originalTitleText"]?["text"]?.ToString(),
+                                //ImageUrl = movieNode["primaryImage"]?["url"]?.ToString(),
+                                //Rating = movieNode["ratingsSummary"]?["aggregateRating"]?.ToString()
+                            };
+                            return movie;
+                        }
+                    }
                 }
-
                 return null;
             }
         }
-        public async Task<Movie> GetMovieById(string id)
-        {
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://imdb8.p.rapidapi.com/title/get-details?tconst={id}"),
-                Headers =
-                {
-                    { "x-rapidapi-key", "a66b09b652msh14a735e7d8e6439p1fa476jsnf09f715f8d65" },
-                    { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                },
-            };
+        //public async Task<Movie> GetMovieById(string id)
+        //{
+        //    var request = new HttpRequestMessage
+        //    {
+        //        Method = HttpMethod.Get,
+        //        RequestUri = new Uri($"https://imdb8.p.rapidapi.com/title/get-details?tconst={id}"),
+        //        Headers =
+        //        {
+        //            { "x-rapidapi-key", "a66b09b652msh14a735e7d8e6439p1fa476jsnf09f715f8d65" },
+        //            { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
+        //        },
+        //    };
 
-            using (var response = await _httpClient.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
+        //    using (var response = await _httpClient.SendAsync(request))
+        //    {
+        //        response.EnsureSuccessStatusCode();
+        //        var body = await response.Content.ReadAsStringAsync();
 
-                var json = JObject.Parse(body);
-                var movieNode = json["results"];
-                    var movie = new Movie
-                    {
-                        Id = movieNode["id"].ToString(),
-                        Title = movieNode["title"]?["text"]?.ToString(),
-                        Plot = movieNode["plot"]?["plainText"]?.ToString(),
-                        ImageUrl = movieNode["primaryImage"]?["url"]?.ToString(),
-                        Rating = movieNode["ratingsSummary"]?["aggregateRating"]?.ToString()
-                    };
-                    return movie;
-            }
-        }
+        //        var json = JObject.Parse(body);
+        //        var movieNodes = json["data"]["movies"]["edges"];
+        //        foreach (var item in movieNodes)
+        //        {
+        //            var movieNode = item["node"];
+        //            var movie = new Movie
+        //            {
+        //                Id = movieNode["id"].ToString(),
+        //                Title = movieNode["titleText"]?["text"]?.ToString(),
+        //                Plot = movieNode["plot"]?["plotText"]?["plainText"]?.ToString(),
+        //                ImageUrl = movieNode["primaryImage"]?["url"]?.ToString(),
+        //                Rating = movieNode["ratingsSummary"]?["aggregateRating"]?.ToString()
+        //            };
+        //            return movie;
+        //        }
+        //    }
+        //    return null;
+        //}
     }
 }

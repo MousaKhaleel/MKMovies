@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MKMovies.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/6f8d6d0077.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MKMovies</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MK<i class="fa-solid fa-video"></i>Movies</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -33,7 +34,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">About Us</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
                         </li>
                     </ul>
                 </div>
@@ -61,7 +62,7 @@
                         <ul>
                             <li><a href="/aboutus">Help center</a></li>
                             <li><a href="/aboutus">Call us</a></li>
-                            <li><a href="/aboutus">How to blog</a></li>
+                            <li><a href="/aboutus"></a></li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
@@ -74,13 +75,13 @@
                     </div>
                     <div class="col-md-6 item text">
                         <a href="/">
-                            <img src="" alt="temp" width="200px" />
+                            <img src="~/images/9HDL7w-LogoMakr.png" alt="temp" width="90px" />
                         </a>
                         <p>temp</p>
                     </div>
                     <div class="col item social">
-                        <a href="https://www.linkedin.com/in/mousa-khaleel/"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/MousaKhaleel"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/mousa-khaleel/"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/MousaKhaleel"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
                 <p class="copyright">temp © <span id="currentYear"></span></p>

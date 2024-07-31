@@ -30,13 +30,17 @@ a {
     display:flex;
 }
 
+.movieGroup a{
+    color:black;
+}
+
 .movieContainer {
-    display:inline-block;
+    display: inline-block;
     background: rgb(247,247,247);
     padding: 6px;
     margin: 6px;
     border-radius: 6px;
-    width:300px;
+    width: 300px;
 }
 
     .movieContainer:hover {

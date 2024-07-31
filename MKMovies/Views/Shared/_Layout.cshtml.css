@@ -40,6 +40,10 @@ button.accept-policy {
   line-height: inherit;
 }
 
+main{
+    min-height:60vh;
+}
+
 /*.footer {
   position: absolute;
   bottom: 0;

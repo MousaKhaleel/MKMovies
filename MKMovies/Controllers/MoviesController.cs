@@ -15,9 +15,9 @@ namespace MKMovies.Controllers
             var movies = await _movieService.GetPopular();
             return View(movies);
         }
-        public async Task<IActionResult> Review(string id)
+        public async Task<IActionResult> Review(string Title)
         {
-            var foundMovie = await _movieService.GetMovieById(id);
+            var foundMovie = await _movieService.GetMovieByName(Title);
             return View(foundMovie);
         }
     }
