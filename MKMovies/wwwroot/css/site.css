@@ -17,6 +17,28 @@ html {
   min-height: 100%;
 }
 
-body {
+/*body {
   margin-bottom: 60px;
+}*/
+
+a {
+    color: #0077cc;
+    text-decoration: none;
 }
+
+.mainContent {
+    display:flex;
+}
+
+.movieContainer {
+    display:inline-block;
+    background: rgb(247,247,247);
+    padding: 6px;
+    margin: 6px;
+    border-radius: 6px;
+    width:300px;
+}
+
+    .movieContainer:hover {
+        background: rgb(207,207,207);
+    }

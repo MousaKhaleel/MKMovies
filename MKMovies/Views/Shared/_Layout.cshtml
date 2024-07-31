@@ -22,8 +22,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Popular">Popular</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">About Us</a>
                         </li>
                     </ul>
                 </div>
@@ -36,11 +46,53 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+	<!--    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - MKMovies - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+	</footer>-->
+
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Help</h3>
+                        <ul>
+                            <li><a href="/aboutus">Help center</a></li>
+                            <li><a href="/aboutus">Call us</a></li>
+                            <li><a href="/aboutus">How to blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="/aboutus">Company</a></li>
+                            <li><a href="/aboutus">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <a href="/">
+                            <img src="" alt="temp" width="200px" />
+                        </a>
+                        <p>temp</p>
+                    </div>
+                    <div class="col item social">
+                        <a href="https://www.linkedin.com/in/mousa-khaleel/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/MousaKhaleel"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <p class="copyright">temp © <span id="currentYear"></span></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -9,5 +9,7 @@ namespace MKMovies.Data
         {
         }
         DbSet<User> Users { get; set; }
+        DbSet<Movie> Movies { get; set; }
+        DbSet<Review> Reviews { get; set; }
     }
 }
